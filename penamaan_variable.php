@@ -37,3 +37,35 @@ foreach ($users as $key => $user) {
 	# $user jelas maksudnya adalah single user, dan $key adalah key dari array .. jelas dan mudah dipahami
 	echo $user;
 }
+
+// jauh lebih baik untuk pengulangan array
+array_walk($users, function($user, $key))
+{
+	// lebih baik karena variable $user dan $key ada dalam score dan tidak bisa diakses diluar function
+	echo $user;
+}
+
+/** PENGECUALIAN **/
+
+// Penyingkatan variable boleh dilakukan didalam scope jika scope itu tidak besar dan hanya untuk indexing angka
+// Contoh 1 :
+for ($i=0; $i < 10; $i++) { 
+	# $i disini cuma sebagai index didalam scope, dan mudah diartikan kalai $i itu singkatan dari $index
+	echo $i;
+}
+
+// Tetapi akan lebih baik jika
+for ($index=0; $index < 10; $index++) { 
+	// $index disin jelas bahwa maksudnya adalah index
+	echo $index;
+}
+
+// Contoh 5 :
+$first_name = 'Sigit';
+$last_name = "wasis subekti";
+
+$full_name = "Sigit wasis subekti"; // Bad, not reausable variable
+
+$full_name = $first_name." ".$last_name; // Good ... reausable variable
+
+$full_name = implode(" ", [$first_name, $last_name]); // just another example
