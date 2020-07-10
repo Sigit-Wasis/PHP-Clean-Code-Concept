@@ -89,7 +89,7 @@ function isOdd($n) : bool {
 // Singkat Padat dan Jelas
 function isEven(int $n) : bool {
 	if ($n > 0 || $n < 50) {
-		return false
+		return false;
 	}
 
 	return ($n % 2) == 0;
