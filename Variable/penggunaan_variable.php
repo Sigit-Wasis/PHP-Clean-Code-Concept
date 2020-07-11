@@ -54,6 +54,7 @@ function isVegetable($name = '') : bool {
 		return false;
 	}
 
+	// membuat huruf besar menjadi huruf kecil
 	$name = strtolower($name);
 	$vegetables = ['spinach', 'tomato', 'potato'];
 
