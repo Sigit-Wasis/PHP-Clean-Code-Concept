@@ -114,3 +114,9 @@ foreach ($cars as $car) {
 		}
 	}
 }
+
+// Good
+foreach ($cars as $car) {
+    if(empty($car)) continue;
+}
+
