@@ -118,5 +118,10 @@ foreach ($cars as $car) {
 // Good
 foreach ($cars as $car) {
     if(empty($car)) continue;
+
+    if($car === "Avanza") echo 'Toyota';
+    else if($car === "Xenia") echo 'Daihatsu';
+    else if($car === "Mobilio") echo 'Honda';
+    else ($car === "Ertiga") echo 'Suzuki';
 }
 
