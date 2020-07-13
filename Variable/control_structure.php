@@ -117,7 +117,7 @@ foreach ($cars as $car) {
 
 // Good
 foreach ($cars as $car) {
-    if(empty($car)) continue;
+    if(empty($car)) continue; // Lanjutkan secepatnya jika data tidak sesuai
 
     if($car === "Avanza") echo 'Toyota';
     else if($car === "Xenia") echo 'Daihatsu';
@@ -125,3 +125,110 @@ foreach ($cars as $car) {
     else ($car === "Ertiga") echo 'Suzuki';
 }
 
+
+
+// Contoh Lain
+// Ceritanya ini mau nyari nilai yang sama dan apabila udah ketemu berhenti
+
+// Bad tidak enak dilihat
+$found = false;
+foreach ($cars as $key => $car) {
+	if ($found === false) {
+		if ($car === 'Avanza') {
+			// Membuat Baris Baru Lintas Platform Dengan PHP
+			echo "found in key : ".$key.PHP_EOL;
+			$found = true;
+		}
+	}
+	// looping tetap berjalan meskipun nilai found nya dirubah jadi true code blocking tetap berjalan
+}
+
+// Good simple dan enak dilihat
+// Jadi jika di dalam $cars ada value Xenia maka langsung tampilkan jika tidak ada break berhenti pengecekan
+foreach ($cars as $key => $car) {
+	if ($car === 'Xenia') {
+		echo "Found in key : ".$key;
+		break; // keluar looping secepatnya jika nilai sudah didapatkan 
+ 	}
+}
+
+
+
+// TAMBAHAN (IF VS SWITCH)
+// Kapan menggunakan Switch dan Kapan menggunakan IF ELSE
+/* Jika If digunakan pada saat membutuhkan ekspresi atau operasi seperti ||, >, <, <= dll
+   Sedangkan Switch dinyatakan dalam bilangan bulat atau karakter */
+// NOTE: Switch hanya variable yang nilai nya sudah diketahui dan tidak membutuhhkan expresi
+
+// If akan melebar ke samping
+$car = "Avanza";
+if ($car === "Xenia" || $car === "Avanza" || $car === "Fortuner") {
+	$vendor = "Toyota";
+} 
+else if($car === "Jazz" || $car === "Mobilio" || $car === "CRV" ) {
+	$vendor = "Honda";
+}
+// Terkadang ada yang membuat seperti ini ke bawah namun tidak enak untuk dilihat
+else if (
+	$car === "Ertiga" ||
+	$car === "Karimun" ||
+	$car === "Jimny"
+) {
+	$vendor = "Suzuki";
+}
+else {
+	$vendor = "";
+}
+
+$bike = "Vario";
+// Switch bisan di grouping ke bawah dibanding if yang menyamping
+switch ($bike) {
+	case 'Mio':
+	case 'Nmax':
+	case 'Xmax':
+		$vendor = "Yamaha";
+		break;
+
+	case 'Beat':
+	case 'Vario':
+	case 'PCX':
+		$vendor = "Honda";
+		break;
+	
+	default:
+		$vendor = "";
+		break; // opsional untuk break terakhir pada switch
+}
+
+
+// TAMBAHAN (FOR VS WHILE)
+// for hanya untuk nilai yang sudak diketahui
+for ($index=0; $index <= 1000; $index++) { 
+	// do some work
+	// .....
+	// .....
+	// .....
+	echo $index;
+}
+
+// while untuk nilai yang belum diketahui
+$run = true;
+while($run) {
+	// do some work
+	// .....
+	// .....
+	// Jika work sudah selesai nonaktikan loop
+	$run false;
+}
+
+// Atau dapat menggunakan seperti ini
+while (true) {
+	continue;
+	break;
+}
+
+// -==================================
+// PERBEDAAN ANTARA FOREACH DENGAN FOR
+// -==================================
+
+/* Secara sederhana foreach merupakan salah satu dari build in function untuk looping yang sangat berguna untuk mempersingkat kodingan. Kalau for sendiri merupakan perulangan dan bukan build in function sama seperti while. Jika anda ingin mempersingkat kodingan. Maka gunakanlah foreach. Jika anda ingin memperpanjang kodingan dan terlihat lebih banyak barisan kodingan, maka gunakan for. */
