@@ -192,3 +192,39 @@ function setPassword(string $password = '') {
 }
 
 $password = setPassword('supersecretPassword123456');
+
+echo $password;
+
+
+
+// CONTOH 4
+// Ini sebenarnya bagus, tapi bisa bentrok kalo ada orang yang nulis fungsi serupa
+function config() : array {
+	return [
+		'key' => 'val'
+	];
+}
+
+// Jika memang maksa pengen bikin global function maka pakai function_exits() buat ngecek dulu
+if (!function_exists(function_name)) {
+	function config() : array {
+		return [
+			'key' => 'val'
+		];
+	}
+}
+else {
+	// do something .....
+}
+
+// tapi lebih baik lagi kalo dibikin object oriented dengan namespace
+namespace Configuration;
+
+class Config() {
+
+	public function get() : array {
+		return  [
+			'key' => 'val'
+		];
+	}
+}
