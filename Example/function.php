@@ -228,3 +228,50 @@ class Config() {
 		];
 	}
 }
+
+// selanjutnya tinggal pakai instance config
+//  \Configuration\Config // jika menggunakan namespace
+
+function applyConfig(Config $config) {
+	// do something ,,,,,
+}
+
+
+
+// CONTOH 5
+// Jadi bingung mau milih yang mana
+function getNameOld() {
+	// .....
+}
+
+function getNameNew() {
+	// .....
+}
+
+// manfaatkan git / sub versioning untuk manage code yang tidak terpakai
+function getName() {
+	// .....
+}
+
+
+
+// CONTOH 6
+// Kalo anonymous function jadi tidak reusable
+function getStudentId(array $students, int $id) : array {
+	// array_filter berfungsi untuk menyaring atau mengambil beberapa data atau element dengan sebuah fungsi
+	return array_filter($students, function($student) use ($id)
+	{
+		// .... semua blok dalam sini jadi tidak reusable
+		return $student->id === $id; // non reusable
+	});
+}
+
+
+// good filterStudentName jadi reusable ..
+function filterStudentName(object $student, string $name) {
+	return $student->name === $name;
+}
+
+function getStudentName(array $students, string $name) {
+	return array_filter($students, function($student) use ($name))
+}
